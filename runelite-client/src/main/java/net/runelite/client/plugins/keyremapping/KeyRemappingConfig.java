@@ -49,6 +49,13 @@ public interface KeyRemappingConfig extends Config
 	)
 	String fKeySection = "fKeys";
 
+	@ConfigSection(
+			name = "Mouse Button Remapping",
+			description = "Settings for remapping Auxilary Mouse Buttons",
+			position = 2
+	)
+	String mouseButtonSection = "mouseButtonSection";
+
 	@ConfigItem(
 		position = 1,
 		keyName = "cameraRemap",
@@ -278,7 +285,43 @@ public interface KeyRemappingConfig extends Config
 	}
 
 	@ConfigItem(
-		position = 20,
+			position = 20,
+			keyName = "mouseRemap",
+			name = "Remap Mouse Side Buttons",
+			description = "Configures whether Mouse Side Buttons use remapped keys",
+			section = fKeySection
+	)
+	default boolean mouseRemap()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+			position = 21,
+			keyName = "forward",
+			name = "Forward",
+			description = "The key which will replace {Forward}.",
+			section = mouseButtonSection
+	)
+	default ModifierlessKeybind forward()
+	{
+		return new ModifierlessKeybind(KeyEvent.VK_DEAD_BREVE, 0);
+	}
+
+	@ConfigItem(
+			position = 22,
+			keyName = "back",
+			name = "Back",
+			description = "The key which will replace {Back}.",
+			section = mouseButtonSection
+	)
+	default ModifierlessKeybind back()
+	{
+		return new ModifierlessKeybind(KeyEvent.VK_DEAD_BREVE, 0);
+	}
+
+	@ConfigItem(
+		position = 23,
 		keyName = "space",
 		name = "Space",
 		description = "The key which will replace {Space} when dialogs are open."
@@ -289,7 +332,7 @@ public interface KeyRemappingConfig extends Config
 	}
 
 	@ConfigItem(
-		position = 21,
+		position = 24,
 		keyName = "control",
 		name = "Control",
 		description = "The key which will replace {Control}."
